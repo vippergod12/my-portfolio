@@ -1,13 +1,21 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import SmokeyCursor from "./components/lightswind/smokey-cursor";
-
+import Navbar from "./components/navbar/Navbar"
+import Home from "./components/home/Home"
+import "./App.css"
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div>
-
+    <div className="app">
       <SmokeyCursor />
+      <div className="container">
+        <div className="navbar">
+          <Navbar/>
+        </div>
+        <div className="Home">
+          <Home />
+        </div>
+      </div>
     </div>
   )
 }
