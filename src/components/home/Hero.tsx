@@ -2,15 +2,15 @@ import React from 'react';
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="bg-zinc-900 text-white min-h-screen flex items-center">
+    <section className="bg-zinc-900 text-white min-h-screen flex items-center ">
       <div className="container mx-auto px-4 py-16">
         {/* Dùng Grid, 1 cột trên mobile, 2 cột trên desktop (md) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           
           {/* Cột bên trái: Lời giới thiệu */}
-          <div className="text-center md:text-left">
+          <div className="text-center md:text-left z-70">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              Hi, I'm <span className="text-sky-400">DevHoa</span>
+              Hi, I'm <span className="text-sky-400">Tien</span>
             </h1>
             <p className="text-xl text-gray-400 mt-4">
               A passionate Fullstack Developer dedicated to building beautiful,
@@ -24,11 +24,10 @@ const HeroSection: React.FC = () => {
             </a>
           </div>
 
-          {/* Cột bên phải: Avatar */}
           <div className="flex justify-center">
-            <div className="relative w-64 h-64 md:w-96 md:h-96">
+            <div className="relative w-64 h-64 md:w-96 md:h-96  z-70">
               <img 
-                src="https://via.placeholder.com/400" // Thay bằng link avatar của bạn
+                src="/assets/imgs/avatar.jpg" // Thay bằng link avatar của bạn
                 alt="Your Avatar" 
                 className="rounded-full object-cover w-full h-full border-4 border-sky-500 shadow-xl shadow-sky-500/30"
               />
