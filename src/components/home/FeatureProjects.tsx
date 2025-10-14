@@ -29,8 +29,8 @@ const projects: Project[] = [
 const FeaturedProjects: React.FC = () => {
   return (
     <section className="bg-zinc-900 py-20">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center text-white mb-12">Dự án nổi bật</h2>
+      <div className="container mx-auto px-4 ">
+        <h2 className="text-4xl font-bold text-center text-white mb-12  z-70">Dự án nổi bật</h2>
         
         <Swiper
           modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}

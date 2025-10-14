@@ -9,8 +9,8 @@ const StatItem: React.FC<{ value: number; label: string }> = ({ value, label }) 
   });
 
   return (
-    <div ref={ref} className="text-center">
-      <p className="text-5xl font-bold text-sky-400">
+    <div ref={ref} className="text-center  z-70">
+      <p className="text-5xl font-bold text-sky-400 ">
         {inView && <CountUp end={value} duration={3} separator="," />}
         +
       </p>
