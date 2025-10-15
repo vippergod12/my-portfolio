@@ -9,7 +9,7 @@ import {
   useVelocity,
   useAnimationFrame,
   useMotionValue,
-} from 'motion/react';
+} from 'framer-motion';
 import { wrap } from '@motionone/utils';
 import { cn } from '../lib/utils';
 
@@ -59,7 +59,7 @@ export default function TextScrollMarquee({
     directionFactor.current = direction === 'left' ? 1 : -1;
   }, [direction]);
 
-  useAnimationFrame((t, delta) => {
+  useAnimationFrame((t:any, delta:any) => {
     if (!hasStarted.current) return;
 
     let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
