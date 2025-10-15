@@ -1,0 +1,18 @@
+.w-custom{
+    width: 100dvw;
+}
+
+.title-custom{
+    font-size: 3rem;
+}
+
+@media screen and  (max-width: 768px){
+    .w-custom{
+        /* height: 100dvh; */
+        padding: 15px 0 0 0;
+    }
+
+    .height-mobile{
+        min-height: 160px;
+    }
+}
