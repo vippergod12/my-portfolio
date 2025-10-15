@@ -5,7 +5,7 @@ import './Contact.css'
 const Contact: React.FC = () => {
   return (
     <section id="contact" className="bg-zinc-900 text-white py-21">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4  z-[71] relative ">
         {/* Tiêu đề chung cho section */}
         <div className="text-center ">
           <h2 className="text-4xl md:text-5xl font-bold">About Me</h2>

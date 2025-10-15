@@ -69,14 +69,14 @@ const ContactForm: React.FC = () => {
     <form
       ref={form}
       onSubmit={handleSubmit}
-      className="flex flex-col gap-y-6 bg-zinc-800 p-8 rounded-lg shadow-lg z-71"
+      className="flex flex-col gap-y-6 bg-zinc-800 p-8 rounded-lg shadow-lg z-[71] relative"
     >
       <h3 className="text-3xl font-bold text-white mb-4 text-center md:text-left z-71">
         Contact Me
       </h3>
 
       {/* Input Group: Name */}
-      <div className="relative">
+      <div className="relative  z-[71]">
         <input
           type="text"
           name="name" // Quan trọng: name phải khớp với biến trong template {{name}}
