@@ -27,3 +27,7 @@ Vào mục Email Templates -> Create New Template.
 Phần Subject, bạn có thể đặt là: New message from {{name}}
 
 Phần Content, bạn soạn nội dung email bạn muốn nhận. Các biến trong dấu {{ }} sẽ được thay thế bằng dữ liệu từ form.
+
+## 2. Lỗi Missing Dependency (TS2307: Cannot find module 'motion/react')
+npm install -D @types/node
+(-D hoặc --save-dev sẽ cài nó như một dependency cho môi trường phát triển, đây là cách làm đúng cho các gói type).

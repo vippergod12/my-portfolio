@@ -1,6 +1,8 @@
 import * as React from "react";
 import { cn } from "../lib/utils"; // Assuming utils.ts is in lib/
-import { motion, AnimatePresence, Variants, Easing } from "framer-motion"; // Import Variants and Easing
+import { motion, AnimatePresence } from "framer-motion"; // Import Variants and Easing
+import type { Variants } from "framer-motion";
+import type { Easing } from "framer-motion";
 
 // --- Context Types ---
 interface TooltipContextType {

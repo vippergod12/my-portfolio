@@ -35,7 +35,7 @@ const PROJECTS_DATA: ProjectData[] = [
     id: 2,
     title: 'Personal Portfolio Website',
     description: 'A dynamic personal portfolio to showcase my skills, projects, and professional journey. Built with a focus on performance, modern design, and an engaging user experience.',
-    technologies: ['Next.js', 'TypeScript', 'Vercel', 'Framer Motion'],
+    technologies: ['ReactJS','Tailwind', 'TypeScript', 'Vercel', 'Framer Motion'],
     imageUrl: '/assets/imgs/my-portfolio.png', // Thay bằng đường dẫn ảnh của bạn
     githubUrl: 'https://github.com/vippergod12/my-portfolio',
   },
