@@ -13,7 +13,7 @@ function App() {
     <div className="app">
       <SmokeyCursor />
       <BrowserRouter>
-        <div className="container h-screen">
+        <div className="container h-screen ">
           <div className="navbar">
             <Navbar/>
           </div>
