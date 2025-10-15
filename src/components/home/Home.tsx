@@ -5,7 +5,7 @@ import FeaturedProjects from './FeatureProjects';
 import StatsSection from './StatsSection';
 const Home = () => {
     return (
-        <div id="home">
+        <div id="home" className="z-71">
             <HeroSection />
             <FeaturedProjects />
             <StatsSection />
