@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaReact, FaNodeJs, FaVuejs, FaJava } from 'react-icons/fa';
+import { FaReact, FaNodeJs, FaVuejs, FaJava, FaGithub } from 'react-icons/fa';
 import { SiTailwindcss, SiSpringboot, SiPostgresql, SiNextdotjs, SiDocker, SiJavascript, SiDotnet } from 'react-icons/si';
 import './AboutMeSection.css'
 // --- ĐỊNH NGHĨA KIỂU DỮ LIỆU (TYPESCRIPT) ---
@@ -101,7 +101,8 @@ const SKILLS_DATA: Skill[] = [
     { name: 'PostgreSQL', icon: SiPostgresql },
     { name: 'Docker', icon: SiDocker},
     { name: 'Javascript', icon: SiJavascript},
-    { name: '.Net', icon: SiDotnet }
+    { name: '.Net', icon: SiDotnet },
+    { name: 'Github', icon: FaGithub}
 ];
 
 const SkillIcon: React.FC<Skill> = ({ name, icon: IconComponent }) => {
