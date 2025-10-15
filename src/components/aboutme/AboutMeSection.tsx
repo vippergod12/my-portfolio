@@ -2,6 +2,13 @@ import React, { useState } from 'react';
 import { FaReact, FaNodeJs, FaVuejs, FaJava, FaGithub } from 'react-icons/fa';
 import { SiTailwindcss, SiSpringboot, SiPostgresql, SiNextdotjs, SiDocker, SiJavascript, SiDotnet } from 'react-icons/si';
 import './AboutMeSection.css'
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode } from 'swiper/modules';
+import '../../../node_modules/swiper/swiper.css';
+import '../../../node_modules/swiper/modules/free-mode.css';
+import { useMediaQuery } from '../hooks/useMediaQuery'; // Điều chỉnh đường dẫn nếu cần
+
 // --- ĐỊNH NGHĨA KIỂU DỮ LIỆU (TYPESCRIPT) ---
 // Định nghĩa kiểu cho mỗi mục trong card (ví dụ: một công việc, một khóa học)
 type ContentItem = {
@@ -135,10 +142,77 @@ const AboutMeSection: React.FC = () => {
 
     // Tìm dữ liệu tương ứng với tab đang active
     const activeContent = TABS_DATA.find((tab) => tab.id === activeTab);
+    const isMobile = useMediaQuery('(max-width: 767px)');
+
+    const ContentCards = ({ items }: { items: ContentItem[] }) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {items.map((item, index) => (
+                <div key={index} className="bg-zinc-800 p-6 rounded-lg shadow-lg flex flex-col">
+                    <p className="text-sm text-sky-400 mb-2">{item.time}</p>
+                    <p className="text-lg font-bold text-white mb-1">{item.title}</p>
+                    <p className="text-md text-zinc-400">{item.subtitle}</p>
+                </div>
+            ))}
+        </div>
+    );
+
+
+
+        // Component để render nội dung cho Skills
+    const SkillIconsGrid = () => (
+        <div className="flex flex-wrap gap-x-8 gap-y-12 justify-center md:justify-start pt-4">
+            {SKILLS_DATA.map((skill) => (
+                <SkillIcon key={skill.name} name={skill.name} icon={skill.icon} />
+            ))}
+        </div>
+    );
+
+    // Component để render carousel trên mobile
+    const MobileCarousel = () => {
+        if (activeContent?.id === 'skills') {
+            return (
+                <Swiper
+                    modules={[FreeMode]}
+                    slidesPerView="auto"
+                    spaceBetween={32}
+                    freeMode={true}
+                    className="w-full pt-4"
+                >
+                    {SKILLS_DATA.map(skill => (
+                        <SwiperSlide key={skill.name} className="!w-auto">
+                            <SkillIcon name={skill.name} icon={skill.icon} />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            );
+        }
+        if (activeContent?.id === 'education' && activeContent.items.length > 0) {
+            return (
+                <Swiper
+                    modules={[FreeMode]}
+                    slidesPerView="auto"
+                    spaceBetween={16}
+                    freeMode={true}
+                    className="w-full"
+                >
+                    {activeContent.items.map((item, index) => (
+                        <SwiperSlide key={index} style={{ width: '280px' }}>
+                            <div className="bg-zinc-800 p-6 rounded-lg shadow-lg flex flex-col h-full height-mobile">
+                                <p className="text-sm text-sky-400 mb-2">{item.time}</p>
+                                <p className="text-lg font-bold text-white mb-1 flex-grow">{item.title}</p>
+                                <p className="text-md text-zinc-400">{item.subtitle}</p>
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            );
+        }
+        return null;
+    };
 
     return (
-        <section className="bg-zinc-900 text-white w-custom relative  lg:py-20 lg:h-full lg:flex">
-            <div className="container mx-auto px-4">
+        <section className="bg-zinc-900 text-white w-custom relative h-full lg:py-20 lg:flex">
+            <div className="container mx-auto px-4 h-full">
                 {/* Layout chính: Grid 12 cột */}
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
 
@@ -165,38 +239,23 @@ const AboutMeSection: React.FC = () => {
                     </div>
 
                     {/* CỘT BÊN PHẢI (8/12) */}
-                    <div className="md:col-span-8 z-[71] relative" >
+                    <div className="md:col-span-8 z-[71] relative">
                         {activeContent && (
                             <div className="flex flex-col space-y-8">
-                                {/* Dòng 1: Title */}
-                                <h1 className="text-5xl font-bold text-sky-400 title-custom">{activeContent.mainTitle}</h1>
-
-                                {/* Dòng 2: Description */}
-                                <h3 className="text-xl text-zinc-300 desc-custom">{activeContent.description}</h3>
-
-
-                                <div>
-                                    {activeContent.id === 'skills' ? (
-                                        // Nếu là tab 'skills', render grid các icon
-                                        <div className="flex flex-wrap gap-x-8 gap-y-12 pt-4">
-                                            {SKILLS_DATA.map((skill) => (
-                                                <SkillIcon key={skill.name} name={skill.name} icon={skill.icon} />
-                                            ))}
-                                        </div>
-                                    ) : activeContent.items.length > 0 ? (
-                                        // Nếu là các tab khác và có item, render grid các card
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                            {activeContent.items.map((item, index) => (
-                                                <div key={index} className="bg-zinc-800 p-6 rounded-lg shadow-lg flex flex-col">
-                                                    <p className="text-2xl text-sky-400 mb-2">{item.time}</p>
-                                                    <p className="text-2xl font-bold text-white mb-1">{item.title}</p>
-                                                    <p className="text-3xl text-zinc-400">{item.subtitle}</p>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    ) : null}
+                                <h1 className="text-4xl lg:text-5xl font-bold text-sky-400">{activeContent.mainTitle}</h1>
+                                <h3 className="text-lg lg:text-xl text-zinc-300">{activeContent.description}</h3>
+                                
+                                {/* 3. LOGIC RENDER ĐỘNG MỚI */}
+                                <div className='min-h-[150px]'>
+                                    {isMobile && (activeContent.id === 'education' || activeContent.id === 'skills') ? (
+                                        <MobileCarousel />
+                                    ) : (
+                                        <>
+                                            {activeContent.id === 'skills' ? <SkillIconsGrid /> : null}
+                                            {activeContent.items.length > 0 ? <ContentCards items={activeContent.items} /> : null}
+                                        </>
+                                    )}
                                 </div>
-
                             </div>
                         )}
                     </div>
