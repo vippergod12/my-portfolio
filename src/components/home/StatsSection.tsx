@@ -24,10 +24,10 @@ const StatsSection: React.FC = () => {
     <section className="bg-zinc-900 py-20">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <StatItem value={50} label="Projects Completed" />
-          <StatItem value={5} label="Years of Experience" />
-          <StatItem value={10000} label="Code Commits" />
-          <StatItem value={20} label="Technologies Used" />
+          <StatItem value={5} label="Projects Completed" />
+          <StatItem value={1} label="Years of Experience" />
+          <StatItem value={1000} label="Code Commits" />
+          <StatItem value={10} label="Technologies Used" />
         </div>
       </div>
     </section>
