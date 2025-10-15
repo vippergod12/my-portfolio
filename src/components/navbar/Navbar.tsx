@@ -20,7 +20,7 @@ const Navbar = () => {
       {/* 4. Thêm class 'active' khi state isOpen là true */}
       <ul className={isOpen ? 'nav-links active' : 'nav-links'}>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/projects">Products</Link></li>
+        <li><Link to="/products">Products</Link></li>
         <li><Link to="/aboutme">About me</Link></li>
         <li><Link to="/contact">Contact</Link></li>
         <li><Link to="/hire" className="hire-me-btn">Hire me</Link></li>

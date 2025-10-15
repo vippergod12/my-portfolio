@@ -5,6 +5,7 @@ import Home from "./components/home/Home"
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Contact from "./components/contact/Contact";
 import AboutPage from './components/aboutme/AboutMe';
+import ProjectsPage from './components/product/ProjectsPage';
 import "./App.css"
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/aboutme" element={<AboutPage/>}/>
+              <Route path="/products" element={<ProjectsPage />} />
               {/* Thêm các trang khác ở đây, ví dụ: */}
               {/* <Route path="/projects" element={<ProjectsPage />} /> */}
             </Routes>
