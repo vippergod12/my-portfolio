@@ -20,8 +20,8 @@ interface Project {
 
 // Dữ liệu dự án giả
 const projects: Project[] = [
-  { id: 1, title: 'E-commerce Platform', description: 'A modern e-commerce site with a robust backend.', imageUrl: 'https://via.placeholder.com/600x400', tags: ['React', 'Node.js', 'MongoDB'] },
-  { id: 2, title: 'Portfolio Website', description: 'A personal portfolio to showcase my skills and projects.', imageUrl: 'https://via.placeholder.com/600x400', tags: ['Next.js', 'Tailwind', 'Vercel'] },
+  { id: 1, title: 'AILMS', description: 'A web application designed to manage and track inventory inflow and outflow. The system simplifies stock-taking, updates inventory levels in real-time, and ensures data accuracy.', imageUrl: '/assets/imgs/ailms.png', tags: ['VueJS', 'Springboot', 'PostgreSQL'] },
+  { id: 2, title: 'Portfolio Website', description: 'A personal portfolio to showcase my skills and projects.', imageUrl: '/assets/imgs/my-portfolio.png', tags: ['Node.js', 'Tailwind', 'ReactJS', 'Vercel'] },
   { id: 3, title: 'Task Management App', description: 'A tool to help teams manage their daily tasks efficiently.', imageUrl: 'https://via.placeholder.com/600x400', tags: ['Vue', 'Firebase'] },
   { id: 4, title: 'Blog Engine', description: 'A full-featured blog with markdown support and SEO.', imageUrl: 'https://via.placeholder.com/600x400', tags: ['Gatsby', 'GraphQL'] },
 ];
@@ -38,7 +38,25 @@ const FeaturedProjects: React.FC = () => {
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={'auto'}
-          loop={true}
+          breakpoints={{
+            // Khi chiều rộng màn hình >= 640px
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            // Khi chiều rộng màn hình >= 768px
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+            // Khi chiều rộng màn hình >= 1024px
+            1024: {
+              slidesPerView: 4, // hoặc 4, tùy vào thiết kế của bạn
+              spaceBetween: 50,
+            },
+          }}
+          // loop={true}
+          rewind = {true}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           coverflowEffect={{
             rotate: 50,

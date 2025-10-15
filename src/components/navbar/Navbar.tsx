@@ -1,4 +1,5 @@
 import React, { useState } from 'react'; // 1. Import useState
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -12,17 +13,17 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <a href="/" className="nav-logo">
+      <Link to="/" className="nav-logo">
         MyPortfolio
-      </a>
+      </Link>
 
       {/* 4. Thêm class 'active' khi state isOpen là true */}
       <ul className={isOpen ? 'nav-links active' : 'nav-links'}>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#projects">Products</a></li>
-        <li><a href="#about">About me</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#hire" className="hire-me-btn">Hire me</a></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/projects">Products</Link></li>
+        <li><Link to="/about">About me</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
+        <li><Link to="/hire" className="hire-me-btn">Hire me</Link></li>
       </ul>
 
       {/* 5. Thêm sự kiện onClick để gọi hàm toggleMenu */}
