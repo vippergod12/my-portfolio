@@ -1,4 +1,6 @@
 #contact{
     width: 100dvw;
-    z-index: 71;
+    /* height: 100%; */
+    /* z-index: 71; */
+    position: relative;
 }
