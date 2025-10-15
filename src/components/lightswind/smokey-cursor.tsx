@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface ColorRGB {
   r: number;
@@ -72,12 +72,7 @@ simulationResolution = 128,
   colorUpdateSpeed = 5,
   // backgroundColor = { r: 0.5, g: 0, b: 0 },
   backgroundColor = {r: 0.5, g: 0, b: 0},
-  transparent = true,
-  className = "",
-  disabled = false,
-  intensity = 0.8,
-  followMouse = true,
-  autoColors = true,
+  transparent = true
 }: SmokeyCursorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
