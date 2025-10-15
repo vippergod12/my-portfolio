@@ -4,12 +4,12 @@ import ContactInfo from './ContactInfo';
 import './Contact.css'
 const Contact: React.FC = () => {
   return (
-    <section id="contact" className="bg-zinc-900 text-white py-24">
+    <section id="contact" className="bg-zinc-900 text-white py-21">
       <div className="container mx-auto px-4">
         {/* Tiêu đề chung cho section */}
-        <div className="text-center mb-16">
+        <div className="text-center ">
           <h2 className="text-4xl md:text-5xl font-bold">About Me</h2>
-          <p className="text-gray-400 mt-4 text-lg">
+          <p className="text-gray-400 mt-4 text-lg mb-4">
             Get to know me and feel free to reach out.
           </p>
         </div>

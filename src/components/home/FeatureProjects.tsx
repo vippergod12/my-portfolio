@@ -28,9 +28,9 @@ const projects: Project[] = [
 
 const FeaturedProjects: React.FC = () => {
   return (
-    <section className="bg-zinc-900 py-20">
-      <div className="container mx-auto px-4 ">
-        <h2 className="text-4xl font-bold text-center text-white mb-12  z-70">Dự án nổi bật</h2>
+    <section className="bg-zinc-900 py-20 relative " >
+      <div className="container mx-auto px-4  z-[71] relative  ">
+        <h2 className="text-4xl font-bold text-center text-white mb-12 ">Dự án nổi bật</h2>
         
         <Swiper
           modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
@@ -71,8 +71,8 @@ const FeaturedProjects: React.FC = () => {
         >
           {projects.map((project) => (
             <SwiperSlide key={project.id} style={{ width: '350px', height: '450px' }}>
-              <div className="bg-zinc-800 rounded-lg overflow-hidden shadow-xl h-full flex flex-col">
-                <img src={project.imageUrl} alt={project.title} className="w-full h-48 object-cover" />
+              <div className="bg-zinc-800 rounded-lg overflow-hidden shadow-xl h-full flex flex-col z-70">
+                <img src={project.imageUrl} alt={project.title} className="w-full h-48 object-cover z-70" />
                 <div className="p-6 flex-grow flex flex-col">
                   <h3 className="text-xl font-bold text-white">{project.title}</h3>
                   <p className="text-gray-400 mt-2 flex-grow">{project.description}</p>

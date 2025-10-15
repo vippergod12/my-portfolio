@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaUser, FaMapMarkerAlt, FaEnvelope, FaPhone } from 'react-icons/fa'
-
+import "./ContactInfo.css"
 interface InfoItemProps{
     icon: React.ReactNode;
     label: string;
@@ -14,8 +14,8 @@ const InfoItem: React.FC<InfoItemProps> = ({icon, label, value}) => {
                 {icon}
             </div>
             <div className="">
-                <p className="text-gray-400 text-sm">{label}</p>
-                <p className="text-white font-semibold">{value}</p>
+                <p className="text-gray-400  label-customize-font ">{label}</p>
+                <p className="text-white font-semibold text-customize-font">{value}</p>
             </div>
         </div>
     );
