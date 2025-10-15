@@ -1,7 +1,7 @@
 
 import SmokeyCursor from "./components/lightswind/smokey-cursor";
 import Navbar from "./components/navbar/Navbar"
-import Home from "./components/home/Hero"
+import Home from "./components/home/Home"
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Contact from "./components/contact/Contact";
 import AboutPage from './components/aboutme/AboutMe';
