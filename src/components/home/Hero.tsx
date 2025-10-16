@@ -50,8 +50,8 @@ const HeroSection: React.FC = () => {
             {/* === KHU VỰC BUTTONS MỚI === */}
             <div className="mt-8 flex flex-col md:flex-row items-center justify-center md:justify-start gap-4">
               <a
-                href="/Tien-CV.pdf" // 3. Trỏ tới file CV trong thư mục public
-                download="Tien-CV.pdf" // Thuộc tính download để tải file về
+                href="/assets/imgs/my-cv.pdf" // 3. Trỏ tới file CV trong thư mục public
+                download="my-cv.pdf" // Thuộc tính download để tải file về
                 className="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-full transition-transform duration-300 transform hover:scale-105"
               >
                 Download CV
