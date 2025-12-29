@@ -3,6 +3,7 @@ import React from 'react';
 import { FaFacebook, FaLinkedin, FaGithub } from 'react-icons/fa';
 import { SiZalo } from 'react-icons/si';
 import { MdEmail } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const HeroSection: React.FC = () => {
   // 2. Tạo một mảng chứa thông tin các mạng xã hội cho dễ quản lý
@@ -56,12 +57,12 @@ const HeroSection: React.FC = () => {
               >
                 Download CV
               </a>
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 className="border-2 border-white hover:bg-white hover:text-zinc-900 text-white font-bold py-3 px-8 rounded-full transition-all duration-300"
               >
                 Contact Me
-              </a>
+              </Link>
             </div>
 
             {/* === KHU VỰC SOCIAL ICONS MỚI === */}

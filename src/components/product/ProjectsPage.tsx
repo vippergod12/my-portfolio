@@ -41,10 +41,10 @@ const PROJECTS_DATA: ProjectData[] = [
   },
   {
     id: 3,
-    title: 'E-commerce Platform',
-    description: 'A full-featured online store with product catalogs, shopping cart functionality, secure checkout, and an admin dashboard for managing products, orders, and customers.',
-    technologies: ['Vue.js', 'Spring Boot', 'Java', 'Stripe API'],
-    imageUrl: 'https://via.placeholder.com/800x600', // Placeholder image
+    title: 'Mandilao',
+    description: 'Customize and order your perfect Haidilao hot pot feast online. Simply choose your broth, pick your ingredients, and get the complete, interactive dining experience delivered directly to your door.',
+    technologies: ['Vue.js', 'Spring Boot', 'Java', 'MsSQL','Axios','Pinia','Github'],
+    imageUrl: '/assets/imgs/mandilao.jpg', // Placeholder image
     githubUrl: '',
   },
 

@@ -22,7 +22,7 @@ interface Project {
 const projects: Project[] = [
   { id: 1, title: 'AILMS', description: 'A web application designed to manage and track inventory inflow and outflow. The system simplifies stock-taking, updates inventory levels in real-time, and ensures data accuracy.', imageUrl: '/assets/imgs/ailms.png', tags: ['VueJS', 'Springboot', 'PostgreSQL'] },
   { id: 2, title: 'Portfolio Website', description: 'A personal portfolio to showcase my skills and projects.', imageUrl: '/assets/imgs/my-portfolio.png', tags: ['Node.js', 'Tailwind', 'ReactJS', 'Vercel'] },
-  { id: 3, title: 'Task Management App', description: 'A tool to help teams manage their daily tasks efficiently.', imageUrl: 'https://via.placeholder.com/600x400', tags: ['Vue', 'Firebase'] },
+  { id: 3, title: 'Mandilao', description: 'Customize and order your perfect Mandilao hot pot feast online. Simply choose your broth, pick your ingredients, and get the complete, interactive dining experience delivered directly to your door.', imageUrl: '/assets/imgs/mandilao.jpg', tags: ['VueJS','MsSQL', 'Springboot'] },
   { id: 4, title: 'Blog Engine', description: 'A full-featured blog with markdown support and SEO.', imageUrl: 'https://via.placeholder.com/600x400', tags: ['Gatsby', 'GraphQL'] },
 ];
 
