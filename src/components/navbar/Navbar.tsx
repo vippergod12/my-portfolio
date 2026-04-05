@@ -11,27 +11,38 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  const closeMenu = () => setIsOpen(false);
+
   return (
-    <nav className="navbar">
-      <Link to="/" className="nav-logo">
+    <nav className="navbar" aria-label="Main navigation">
+      <Link to="/" className="nav-logo" onClick={closeMenu}>
         MyPortfolio
       </Link>
 
-      {/* 4. Thêm class 'active' khi state isOpen là true */}
-      <ul className={isOpen ? 'nav-links active' : 'nav-links'}>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/products">Products</Link></li>
-        <li><Link to="/aboutme">About me</Link></li>
-        <li><Link to="/contact">Contact</Link></li>
-        <li><Link to="/hire" className="hire-me-btn">Hire me</Link></li>
+      <ul
+        id="nav-menu"
+        className={isOpen ? 'nav-links active' : 'nav-links'}
+        aria-hidden={!isOpen}
+      >
+        <li><Link to="/" onClick={closeMenu}>Home</Link></li>
+        <li><Link to="/products" onClick={closeMenu}>Products</Link></li>
+        <li><Link to="/aboutme" onClick={closeMenu}>About me</Link></li>
+        <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
+        <li><Link to="/hire" className="hire-me-btn" onClick={closeMenu}>Hire me</Link></li>
       </ul>
 
-      {/* 5. Thêm sự kiện onClick để gọi hàm toggleMenu */}
-      <div className="hamburger" onClick={toggleMenu}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <button
+        type="button"
+        className="hamburger"
+        onClick={toggleMenu}
+        aria-expanded={isOpen}
+        aria-controls="nav-menu"
+        aria-label={isOpen ? 'Close menu' : 'Open menu'}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
     </nav>
   );
 };

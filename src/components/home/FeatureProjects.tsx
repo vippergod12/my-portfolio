@@ -1,93 +1,123 @@
 import React from 'react';
-// Import các component cần thiết từ Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import PROJECTS_DATA, { type ProjectData } from '../../data/projects';
 
-// Import CSS của Swiper
-import '../../../node_modules/swiper/swiper.css';
-import '../../../node_modules/swiper/modules/navigation.css';
-import '../../../node_modules/swiper/modules/pagination.css';
-import '../../../node_modules/swiper/modules/effect-coverflow.css';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
-// Định nghĩa kiểu dữ liệu cho một dự án
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  imageUrl: string;
-  tags: string[];
-}
+const CARD_HEIGHT = 'h-[420px] sm:h-[440px] lg:h-[360px]';
 
-// Dữ liệu dự án giả
-const projects: Project[] = [
-  { id: 1, title: 'AILMS', description: 'A web application designed to manage and track inventory inflow and outflow. The system simplifies stock-taking, updates inventory levels in real-time, and ensures data accuracy.', imageUrl: '/assets/imgs/ailms.png', tags: ['VueJS', 'Springboot', 'PostgreSQL'] },
-  { id: 2, title: 'Portfolio Website', description: 'A personal portfolio to showcase my skills and projects.', imageUrl: '/assets/imgs/my-portfolio.png', tags: ['Node.js', 'Tailwind', 'ReactJS', 'Vercel'] },
-  { id: 3, title: 'Mandilao', description: 'Customize and order your perfect Mandilao hot pot feast online. Simply choose your broth, pick your ingredients, and get the complete, interactive dining experience delivered directly to your door.', imageUrl: '/assets/imgs/mandilao.jpg', tags: ['VueJS','MsSQL', 'Springboot'] },
-  { id: 4, title: 'Blog Engine', description: 'A full-featured blog with markdown support and SEO.', imageUrl: 'https://via.placeholder.com/600x400', tags: ['Gatsby', 'GraphQL'] },
-];
+const ProjectCard: React.FC<{ project: ProjectData; flipped?: boolean }> = ({
+  project,
+  flipped = false,
+}) => {
+  const imageBlock = (
+    <div className="relative overflow-hidden lg:w-1/2 h-[200px] sm:h-[220px] lg:h-full shrink-0">
+      <img
+        src={project.imageUrl}
+        alt={project.title}
+        className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent lg:hidden" />
+    </div>
+  );
+
+  const textBlock = (
+    <div className="flex flex-1 flex-col justify-center px-6 py-5 sm:px-8 sm:py-6 lg:w-1/2 lg:py-8 overflow-hidden">
+      <span className="text-xs font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400">
+        {project.subtitle}
+      </span>
+      <h3 className="mt-1 text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+        {project.title}
+      </h3>
+
+      <p className="mt-3 text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-3">
+        {project.description}
+      </p>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {project.technologies.slice(0, 4).map((tag) => (
+          <span
+            key={tag}
+            className="rounded-full bg-sky-100 px-3 py-1 text-xs font-medium text-sky-700 dark:bg-sky-900/40 dark:text-sky-300"
+          >
+            {tag}
+          </span>
+        ))}
+        {project.technologies.length > 4 && (
+          <span className="rounded-full bg-zinc-100 dark:bg-zinc-700 px-3 py-1 text-xs font-medium text-zinc-500 dark:text-zinc-400">
+            +{project.technologies.length - 4}
+          </span>
+        )}
+      </div>
+
+      <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-sky-600 dark:text-sky-400 transition-all group-hover:gap-3">
+        View Case Study <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
+      </div>
+    </div>
+  );
+
+  return (
+    <Link to={`/products/${project.slug}`} className="block">
+      <div
+        className={`group mx-auto ${CARD_HEIGHT} w-full overflow-hidden rounded-2xl border border-zinc-200/80 dark:border-zinc-700/50 bg-white/60 dark:bg-zinc-800/50 backdrop-blur-sm shadow-lg transition-shadow duration-300 hover:shadow-xl hover:shadow-sky-500/10`}
+      >
+        <div
+          className={`flex h-full flex-col lg:flex-row ${flipped ? 'lg:flex-row-reverse' : ''}`}
+        >
+          {imageBlock}
+          {textBlock}
+        </div>
+      </div>
+    </Link>
+  );
+};
 
 const FeaturedProjects: React.FC = () => {
   return (
-    <section className="bg-zinc-900 py-20 relative " >
-      <div className="container mx-auto px-4  z-[71] relative  ">
-        <h2 className="text-4xl font-bold text-center text-white mb-12 ">Dự án nổi bật</h2>
-        
+    <section className="py-16 sm:py-24 relative overflow-hidden">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6 z-[71] relative">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-white">
+            Featured{' '}
+            <span className="text-sky-500 dark:text-sky-400">Projects</span>
+          </h2>
+          <p className="mx-auto mt-4 max-w-lg text-zinc-600 dark:text-zinc-400">
+            A selection of projects I have built — from full-stack apps to interactive web
+            experiences.
+          </p>
+        </div>
+
         <Swiper
-          modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
-          effect={'coverflow'}
-          grabCursor={true}
-          centeredSlides={true}
-          slidesPerView={'auto'}
-          breakpoints={{
-            // Khi chiều rộng màn hình >= 640px
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            // Khi chiều rộng màn hình >= 768px
-            768: {
-              slidesPerView: 3,
-              spaceBetween: 40,
-            },
-            // Khi chiều rộng màn hình >= 1024px
-            1024: {
-              slidesPerView: 4, // hoặc 4, tùy vào thiết kế của bạn
-              spaceBetween: 50,
-            },
-          }}
-          // loop={true}
-          rewind = {true}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          coverflowEffect={{
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-          }}
+          modules={[Navigation, Pagination, Autoplay]}
+          grabCursor
+          slidesPerView={1}
+          spaceBetween={32}
+          rewind
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
-          navigation={true}
-          className="mySwiper"
+          navigation
+          className="mySwiper !pb-14"
         >
-          {projects.map((project) => (
-            <SwiperSlide key={project.id} style={{ width: '350px', height: '450px' }}>
-              <div className="bg-zinc-800 rounded-lg overflow-hidden shadow-xl h-full flex flex-col z-70">
-                <img src={project.imageUrl} alt={project.title} className="w-full h-48 object-cover z-70" />
-                <div className="p-6 flex-grow flex flex-col">
-                  <h3 className="text-xl font-bold text-white">{project.title}</h3>
-                  <p className="text-gray-400 mt-2 flex-grow">{project.description}</p>
-                  <div className="mt-4">
-                    {project.tags.map(tag => (
-                      <span key={tag} className="inline-block bg-sky-800 text-sky-200 text-xs px-2 py-1 rounded-full mr-2">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+          {PROJECTS_DATA.map((project, i) => (
+            <SwiperSlide key={project.id}>
+              <ProjectCard project={project} flipped={i % 2 !== 0} />
             </SwiperSlide>
           ))}
         </Swiper>
+
+        <div className="mt-8 text-center">
+          <Link
+            to="/products"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-zinc-300 dark:border-zinc-600 px-8 py-3 font-bold text-zinc-700 dark:text-zinc-200 transition hover:border-sky-500 hover:text-sky-600 dark:hover:border-sky-400 dark:hover:text-sky-400"
+          >
+            View All Projects
+          </Link>
+        </div>
       </div>
     </section>
   );

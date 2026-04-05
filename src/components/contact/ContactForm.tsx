@@ -69,9 +69,9 @@ const ContactForm: React.FC = () => {
     <form
       ref={form}
       onSubmit={handleSubmit}
-      className="flex flex-col gap-y-6 bg-zinc-800 p-8 rounded-lg shadow-lg z-[71] relative"
+      className="flex flex-col gap-y-6 bg-zinc-200 dark:bg-zinc-800 p-8 rounded-lg shadow-lg z-[71] relative border border-zinc-300/80 dark:border-transparent"
     >
-      <h3 className="text-3xl font-bold text-white mb-4 text-center md:text-left z-71">
+      <h3 className="text-3xl font-bold text-zinc-900 dark:text-white mb-4 text-center md:text-left z-71">
         Contact Me
       </h3>
 
@@ -79,13 +79,15 @@ const ContactForm: React.FC = () => {
       <div className="relative  z-[71]">
         <input
           type="text"
-          name="name" // Quan trọng: name phải khớp với biến trong template {{name}}
+          name="name"
           value={formData.name}
           onChange={handleChange}
           required
-          className="z-71 w-full bg-transparent border-b-2 border-gray-500 text-white py-2 px-1 focus:outline-none focus:border-sky-400 peer"
+          placeholder=" "
+          autoComplete="name"
+          className="z-71 w-full bg-transparent border-b-2 border-zinc-400 dark:border-gray-500 text-zinc-900 dark:text-white py-2 px-1 focus:outline-none focus:border-sky-500 dark:focus:border-sky-400 peer"
         />
-        <label className="z-71 absolute left-1 -top-5 text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-sky-400 peer-focus:text-sm">
+        <label className="z-71 absolute left-1 -top-5 text-zinc-500 dark:text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-500 dark:peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-sky-600 dark:peer-focus:text-sky-400 peer-focus:text-sm">
           Your Name
         </label>
       </div>
@@ -94,13 +96,15 @@ const ContactForm: React.FC = () => {
       <div className="relative mt-4">
         <input
           type="email"
-          name="email" // Quan trọng: name phải khớp với biến trong template {{email}}
+          name="email"
           value={formData.email}
           onChange={handleChange}
           required
-          className="z-71 w-full bg-transparent border-b-2 border-gray-500 text-white py-2 px-1 focus:outline-none focus:border-sky-400 peer"
+          placeholder=" "
+          autoComplete="email"
+          className="z-71 w-full bg-transparent border-b-2 border-zinc-400 dark:border-gray-500 text-zinc-900 dark:text-white py-2 px-1 focus:outline-none focus:border-sky-500 dark:focus:border-sky-400 peer"
         />
-        <label className="z-71 absolute left-1 -top-5 text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-sky-400 peer-focus:text-sm">
+        <label className="z-71 absolute left-1 -top-5 text-zinc-500 dark:text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-500 dark:peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-sky-600 dark:peer-focus:text-sky-400 peer-focus:text-sm">
           Email Address
         </label>
       </div>
@@ -108,14 +112,15 @@ const ContactForm: React.FC = () => {
       {/* Input Group: Message */}
       <div className="relative mt-4">
         <textarea
-          name="message" // Quan trọng: name phải khớp với biến trong template {{message}}
+          name="message"
           value={formData.message}
           onChange={handleChange}
           required
           rows={4}
-          className="z-71 w-full bg-transparent border-b-2 border-gray-500 text-white py-2 px-1 focus:outline-none focus:border-sky-400 peer"
+          placeholder=" "
+          className="z-71 w-full bg-transparent border-b-2 border-zinc-400 dark:border-gray-500 text-zinc-900 dark:text-white py-2 px-1 focus:outline-none focus:border-sky-500 dark:focus:border-sky-400 peer resize-y min-h-[120px]"
         />
-        <label className="z-71 absolute left-1 -top-5 text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-sky-400 peer-focus:text-sm">
+        <label className="z-71 absolute left-1 -top-5 text-zinc-500 dark:text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-500 dark:peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-sky-600 dark:peer-focus:text-sky-400 peer-focus:text-sm">
           Your Message
         </label>
       </div>
@@ -124,7 +129,7 @@ const ContactForm: React.FC = () => {
       <button
         type="submit"
         disabled={status === 'sending'} // Vô hiệu hóa nút khi đang gửi
-        className="z-71 mt-4 bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 self-start disabled:opacity-50 disabled:cursor-not-allowed"
+        className="z-71 mt-4 bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 self-center sm:self-start disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
       >
         {getButtonText()}
       </button>

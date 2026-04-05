@@ -1,6 +1,5 @@
-#contact{
-    width: 100dvw;
-    /* height: 100%; */
-    /* z-index: 71; */
-    position: relative;
+#contact {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
 }

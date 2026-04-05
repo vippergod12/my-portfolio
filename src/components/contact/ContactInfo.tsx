@@ -14,8 +14,8 @@ const InfoItem: React.FC<InfoItemProps> = ({icon, label, value}) => {
                 {icon}
             </div>
             <div className="">
-                <p className="text-gray-400  label-customize-font ">{label}</p>
-                <p className="text-white font-semibold text-customize-font">{value}</p>
+                <p className="text-zinc-600 dark:text-gray-400 label-customize-font">{label}</p>
+                <p className="text-zinc-900 dark:text-white font-semibold text-customize-font">{value}</p>
             </div>
         </div>
     );

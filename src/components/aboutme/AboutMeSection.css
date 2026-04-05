@@ -1,18 +1,9 @@
-.w-custom{
-    width: 100dvw;
+.title-custom {
+    font-size: clamp(1.75rem, 5vw, 3rem);
 }
 
-.title-custom{
-    font-size: 3rem;
-}
-
-@media screen and  (max-width: 768px){
-    .w-custom{
-        /* height: 100dvh; */
-        padding: 15px 0 0 0;
-    }
-
-    .height-mobile{
+@media screen and (max-width: 768px) {
+    .height-mobile {
         min-height: 160px;
     }
 }

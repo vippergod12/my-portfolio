@@ -1,10 +1,19 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('portfolio-theme');
+          document.documentElement.classList.toggle('dark', t !== 'light');
+        } catch (e) {}
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my-portfolio</title>
+    <meta name="description" content="Portfolio — Dang Nhat Tien, Fullstack Developer." />
+    <title>Dang Nhat Tien | Portfolio</title>
   </head>
   <body>
     <div id="root"></div>

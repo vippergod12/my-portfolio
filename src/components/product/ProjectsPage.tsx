@@ -1,134 +1,91 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaArrowRight } from 'react-icons/fa';
+import PROJECTS_DATA from '../../data/projects';
 
-// --- 1. IMPORT SWIPER VÀ CÁC MODULE CẦN THIẾT ---
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import { FaGithub } from "react-icons/fa";
-import './ProjectsPage.css'
-
-// --- 2. IMPORT CSS CỦA SWIPER ---
-import '../../../node_modules/swiper/swiper.css';
-import '../../../node_modules/swiper/modules/navigation.css';
-import '../../../node_modules/swiper/modules/pagination.css';
-
-// --- 3. ĐỊNH NGHĨA KIỂU DỮ LIỆU CHO MỘT DỰ ÁN ---
-type ProjectData = {
-  id: number;
-  title: string;
-  description: string;
-  technologies: string[];
-  imageUrl: string;
-  githubUrl: string;
-};
-
-// --- 4. DỮ LIỆU CÁC DỰ ÁN (BẠN CÓ THỂ THAY ĐỔI Ở ĐÂY) ---
-const PROJECTS_DATA: ProjectData[] = [
-  {
-    id: 1,
-    title: 'AILMS Inventory Management',
-    description: 'A comprehensive web application designed to manage and track inventory. The system simplifies stock-taking, updates levels in real-time, and generates reports for strategic business decisions.',
-    technologies: ['VueJs', 'Node.js', 'PostgreSQL', 'Bootstrap','Springboot', 'Docker','Github','Notion'],
-    imageUrl: '/assets/imgs/ailms.png', // Thay bằng đường dẫn ảnh của bạn
-    githubUrl: 'https://github.com/Jomurice/DATN_AILMS_BE',
-  },
-  {
-    id: 2,
-    title: 'Personal Portfolio Website',
-    description: 'A dynamic personal portfolio to showcase my skills, projects, and professional journey. Built with a focus on performance, modern design, and an engaging user experience.',
-    technologies: ['ReactJS','Tailwind', 'TypeScript', 'Vercel', 'Framer Motion'],
-    imageUrl: '/assets/imgs/my-portfolio.png', // Thay bằng đường dẫn ảnh của bạn
-    githubUrl: 'https://github.com/vippergod12/my-portfolio',
-  },
-  {
-    id: 3,
-    title: 'Mandilao',
-    description: 'Customize and order your perfect Haidilao hot pot feast online. Simply choose your broth, pick your ingredients, and get the complete, interactive dining experience delivered directly to your door.',
-    technologies: ['Vue.js', 'Spring Boot', 'Java', 'MsSQL','Axios','Pinia','Github'],
-    imageUrl: '/assets/imgs/mandilao.jpg', // Placeholder image
-    githubUrl: '',
-  },
-
-];
-
-// --- 5. COMPONENT CHÍNH ---
 const ProjectsPage: React.FC = () => {
   return (
-    <section className="bg-zinc-900 text-white w-full min-h-screen flex items-center justify-center px-8 w-custom z-[71]">
-      <div className="w-full max-w-8xl z-[71] relative">
-        <Swiper
-          // Kích hoạt các module
-          modules={[Navigation, Pagination, Autoplay]}
-          
-          // Cấu hình
-          spaceBetween={50}     // Khoảng cách giữa các slide
-          slidesPerView={1}       // Luôn hiển thị 1 slide tại một thời điểm
-          loop={true}           // Cho phép lặp vô tận
-        // rewind = {true}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-          navigation={true}     // Hiển thị nút tới/lui
-          pagination={{ clickable: true }} // Hiển thị các chấm phân trang có thể click
-          
-          // Thêm class để tùy chỉnh CSS nếu cần
-          className="mySwiper"
-        >
-          {PROJECTS_DATA.map((project) => (
-            <SwiperSlide key={project.id}>
-              {/* Layout 2 cột cho mỗi slide */}
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                
-                {/* === CỘT BÊN TRÁI: THÔNG TIN (6/12) === */}
-                <div className="md:col-span-6 flex flex-col space-y-8 text-center md:text-left z-[71]">
-                  {/* Hàng 1: Title */}
-                  <h1 className="text-5xl lg:text-6xl font-bold text-sky-400">
-                    {project.title}
-                  </h1>
-                  
-                  {/* Hàng 2: Description */}
-                  <h3 className="text-xl text-zinc-300 leading-relaxed">
-                    {project.description}
-                  </h3>
-                  
-                  {/* Hàng 3: Technologies Tags */}
-                  <div className="flex flex-wrap gap-3 justify-center md:justify-start">
-                    {project.technologies.map((tag) => (
-                      <span key={tag} className="bg-zinc-800 text-sky-300 text-sm font-semibold px-3 py-1 rounded-full">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                    {/* Hàng 4: Link đến dự án */}
-                    <div className="flex items-center justify-center md:justify-start gap-4 mt-4">
-                        <a
-                            href={project.githubUrl}
-                            target="_blank" // Mở link trong tab mới
-                            rel="noopener noreferrer" // Bảo mật và hiệu suất
-                            className="text-white bg-zinc-700 hover:bg-sky-600 transition-colors duration-300 rounded-full p-3 flex items-center justify-center"
-                            aria-label="GitHub Repository" // Tốt cho accessibility
-                        >
-                            <FaGithub className="w-6 h-6" />
-                        </a>
-                    {/* Bạn có thể thêm các nút khác ở đây, ví dụ link deploy live */}
+    <section className="text-zinc-900 dark:text-white px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <div className="mx-auto max-w-6xl z-[71] relative">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl sm:text-5xl font-extrabold">
+            My{' '}
+            <span className="bg-gradient-to-r from-sky-500 to-violet-500 bg-clip-text text-transparent">
+              Projects
+            </span>
+          </h1>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-zinc-600 dark:text-zinc-400">
+            A collection of products and applications I have designed, developed and shipped.
+          </p>
+        </div>
+
+        {/* Project Cards */}
+        <div className="flex flex-col gap-16 sm:gap-20">
+          {PROJECTS_DATA.map((project, i) => {
+            const isEven = i % 2 === 0;
+            return (
+              <Link
+                key={project.id}
+                to={`/products/${project.slug}`}
+                className="group block"
+              >
+                <div
+                  className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
+                    !isEven ? 'lg:direction-rtl' : ''
+                  }`}
+                >
+                  {/* Image */}
+                  <div className={`${!isEven ? 'lg:order-2' : ''}`}>
+                    <div className="relative overflow-hidden rounded-2xl shadow-lg shadow-black/10 dark:shadow-black/30">
+                      <div className="aspect-[16/10] overflow-hidden">
+                        <img
+                          src={project.imageUrl}
+                          alt={project.title}
+                          className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                      <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-black/5 dark:ring-white/5" />
                     </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className={`${!isEven ? 'lg:order-1' : ''}`}>
+                    <span className="text-sm font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400">
+                      {project.subtitle}
+                    </span>
+                    <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+                      {project.title}
+                    </h2>
+                    <p className="mt-4 text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+                      {project.description}
+                    </p>
+
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {project.technologies.slice(0, 5).map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full bg-zinc-100 dark:bg-zinc-800 px-3 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                      {project.technologies.length > 5 && (
+                        <span className="rounded-full bg-zinc-100 dark:bg-zinc-800 px-3 py-1 text-xs font-medium text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700">
+                          +{project.technologies.length - 5}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-sky-600 dark:text-sky-400 transition-all group-hover:gap-3">
+                      View Case Study <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </div>
                 </div>
-
-
-
-                {/* === CỘT BÊN PHẢI: HÌNH ẢNH (6/12) === */}
-                <div className="md:col-span-6">
-                  <img
-                    src={project.imageUrl}
-                    alt={project.title}
-                    className="rounded-lg shadow-2xl w-full h-auto object-cover"
-                  />
-                </div>
-
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

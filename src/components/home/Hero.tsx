@@ -36,14 +36,14 @@ const HeroSection: React.FC = () => {
   ];
 
   return (
-    <section className="bg-zinc-900 text-white min-h-screen flex items-center ">
-      <div className="container mx-auto px-4 py-16">
+    <section className="text-zinc-900 dark:text-white min-h-[100dvh] flex items-center">
+      <div className="container mx-auto max-w-6xl px-4 py-12 sm:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="text-center md:text-left z-70">
+          <div className="text-center md:text-left z-[70]">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              Hi, I'm <span className="text-sky-400">Tien</span>
+              Hi, I'm <span className="text-sky-500 dark:text-sky-400">Tien</span>
             </h1>
-            <p className="text-xl text-gray-400 mt-4">
+            <p className="text-xl text-zinc-600 dark:text-gray-400 mt-4">
               A passionate Fullstack Developer dedicated to building beautiful,
               functional, and user-centric web applications.
             </p>
@@ -59,22 +59,23 @@ const HeroSection: React.FC = () => {
               </a>
               <Link
                 to="/contact"
-                className="border-2 border-white hover:bg-white hover:text-zinc-900 text-white font-bold py-3 px-8 rounded-full transition-all duration-300"
+                className="border-2 border-zinc-900 text-zinc-900 hover:bg-zinc-900 hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-zinc-900 font-bold py-3 px-8 rounded-full transition-all duration-300"
               >
                 Contact Me
               </Link>
             </div>
 
             {/* === KHU VỰC SOCIAL ICONS MỚI === */}
-            <div className="mt-8 flex justify-center md:justify-start gap-6">
+            <div className="mt-8 flex flex-wrap justify-center md:justify-start gap-4 sm:gap-6">
               {socials.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
-                  target="_blank" // Mở link trong tab mới
-                  rel="noopener noreferrer" // Tăng tính bảo mật
+                  {...(social.href.startsWith('mailto:')
+                    ? {}
+                    : { target: '_blank', rel: 'noopener noreferrer' })}
                   aria-label={social.label}
-                  className="text-gray-400 hover:text-sky-400 transition-transform duration-300 transform hover:scale-125"
+                  className="text-zinc-500 hover:text-sky-500 dark:text-gray-400 dark:hover:text-sky-400 transition-transform duration-300 transform hover:scale-125 min-w-[44px] min-h-[44px] flex items-center justify-center"
                 >
                   {social.icon}
                 </a>
@@ -83,13 +84,13 @@ const HeroSection: React.FC = () => {
           </div>
 
           <div className="flex justify-center">
-            <div className="relative w-64 h-64 md:w-96 md:h-96 z-70">
+            <div className="relative w-48 sm:w-56 md:w-72 aspect-[3/4] z-[70]">
+              <div className="absolute -inset-3 rounded-2xl bg-sky-500/20 blur-xl" />
               <img
                 src="/assets/imgs/avatar.jpg"
                 alt="Your Avatar"
-                className="rounded-full object-cover w-full h-full border-4 border-sky-500 shadow-xl shadow-sky-500/30"
+                className="relative rounded-2xl object-cover object-top w-full h-full border-4 border-sky-500 shadow-xl shadow-sky-500/25 dark:shadow-sky-500/30"
               />
-              <div className="absolute top-0 left-0 w-full h-full rounded-full border-4 border-sky-400 animate-ping opacity-30"></div>
             </div>
           </div>
         </div>

@@ -4,18 +4,17 @@ import ContactInfo from './ContactInfo';
 import './Contact.css'
 const Contact: React.FC = () => {
   return (
-    <section id="contact" className="bg-zinc-900 text-white py-21">
-      <div className="container mx-auto px-4  z-[71] relative ">
-        {/* Tiêu đề chung cho section */}
-        <div className="text-center ">
-          <h2 className="text-4xl md:text-5xl font-bold">About Me</h2>
-          <p className="text-gray-400 mt-4 text-lg mb-4">
-            Get to know me and feel free to reach out.
+    <section id="contact" className="text-zinc-900 dark:text-white py-16 md:py-24">
+      <div className="container mx-auto max-w-6xl px-4 z-[71] relative">
+        <div className="text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">Contact</h2>
+          <p className="text-zinc-600 dark:text-gray-400 mt-4 text-base sm:text-lg mb-4 max-w-2xl mx-auto">
+            Have a project in mind or want to collaborate? Send a message — I will get back to you as soon as I can.
           </p>
         </div>
 
         {/* Dùng Grid để chia 2 cột, 1 cột trên mobile, 2 cột trên desktop */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           
           {/* Cột Trái: Form */}
           <div>

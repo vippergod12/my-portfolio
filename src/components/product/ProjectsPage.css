@@ -1,10 +1,12 @@
-.w-custom{
-    width: 100dvw;
-}
 .mySwiper {
-    /* Đặt position relative để các nút con absolute định vị theo nó */
     position: relative;
-    padding: 0 50px; /* Tạo không gian hai bên cho các nút */
+    padding: 0 44px;
+}
+
+@media (min-width: 640px) {
+    .mySwiper {
+        padding: 0 50px;
+    }
 }
 
 /* Di chuyển nút Previous ra lề trái. 
