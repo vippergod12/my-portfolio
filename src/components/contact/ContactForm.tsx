@@ -1,16 +1,10 @@
 import React, { useState, useRef } from 'react';
-// 1. Import thư viện emailjs
 import emailjs from '@emailjs/browser';
 import './ContactForm.css';
 
 const ContactForm: React.FC = () => {
-  const form = useRef<HTMLFormElement>(null); // 2. Tạo một ref cho form
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-  // State để quản lý trạng thái gửi
+  const form = useRef<HTMLFormElement>(null);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -20,63 +14,36 @@ const ContactForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    // Kiểm tra nếu đang gửi thì không làm gì cả
-    if (status === 'sending') return;
-
-    // 3. Kiểm tra xem ref đã được gán chưa
-    if (!form.current) return;
+    if (status === 'sending' || !form.current) return;
 
     setStatus('sending');
+    emailjs.sendForm('service_3y9383c', 'template_029sez9', form.current, 'UB_D9n17zWWff_bUc')
+      .then(() => {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      }, () => {
+        setStatus('error');
+      });
+  };
 
-    // 4. Gọi hàm sendForm của emailjs
-    emailjs.sendForm(
-        'service_3y9383c',      // Thay bằng Service ID của bạn
-        'template_029sez9',     // Thay bằng Template ID của bạn
-        form.current,           // Tham chiếu đến thẻ form
-        'UB_D9n17zWWff_bUc'       // Thay bằng Public Key (tìm trong mục Account của EmailJS)
-      )
-      .then(
-        (result) => {
-          console.log('SUCCESS!', result.text);
-          setStatus('success');
-          // Xóa form sau khi gửi thành công
-          setFormData({ name: '', email: '', message: '' }); 
-        },
-        (error) => {
-          console.log('FAILED...', error.text);
-          setStatus('error');
-        }
-      );
-  };
-  
-  // Xác định nội dung của button dựa trên status
-  const getButtonText = () => {
-    switch (status) {
-      case 'sending':
-        return 'Sending...';
-      case 'success':
-        return 'Sent Successfully!';
-      case 'error':
-        return 'Try Again';
-      default:
-        return 'Send Message';
-    }
-  };
+  const buttonText = {
+    idle: 'Send Message',
+    sending: 'Sending...',
+    success: 'Sent Successfully!',
+    error: 'Try Again',
+  }[status];
 
   return (
-    // 5. Gán ref vào thẻ form
     <form
       ref={form}
       onSubmit={handleSubmit}
-      className="flex flex-col gap-y-6 bg-zinc-200 dark:bg-zinc-800 p-8 rounded-lg shadow-lg z-[71] relative border border-zinc-300/80 dark:border-transparent"
+      className="glass-card flex flex-col gap-y-6 p-8 rounded-2xl z-[71] relative"
     >
-      <h3 className="text-3xl font-bold text-zinc-900 dark:text-white mb-4 text-center md:text-left z-71">
-        Contact Me
+      <h3 className="font-display text-2xl font-bold text-zinc-900 dark:text-white">
+        Send a Message
       </h3>
 
-      {/* Input Group: Name */}
-      <div className="relative  z-[71]">
+      <div className="relative z-[71]">
         <input
           type="text"
           name="name"
@@ -85,15 +52,12 @@ const ContactForm: React.FC = () => {
           required
           placeholder=" "
           autoComplete="name"
-          className="z-71 w-full bg-transparent border-b-2 border-zinc-400 dark:border-gray-500 text-zinc-900 dark:text-white py-2 px-1 focus:outline-none focus:border-sky-500 dark:focus:border-sky-400 peer"
+          className="contact-input peer"
         />
-        <label className="z-71 absolute left-1 -top-5 text-zinc-500 dark:text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-500 dark:peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-sky-600 dark:peer-focus:text-sky-400 peer-focus:text-sm">
-          Your Name
-        </label>
+        <label className="contact-label">Your Name</label>
       </div>
 
-      {/* Input Group: Email */}
-      <div className="relative mt-4">
+      <div className="relative z-[71]">
         <input
           type="email"
           name="email"
@@ -102,15 +66,12 @@ const ContactForm: React.FC = () => {
           required
           placeholder=" "
           autoComplete="email"
-          className="z-71 w-full bg-transparent border-b-2 border-zinc-400 dark:border-gray-500 text-zinc-900 dark:text-white py-2 px-1 focus:outline-none focus:border-sky-500 dark:focus:border-sky-400 peer"
+          className="contact-input peer"
         />
-        <label className="z-71 absolute left-1 -top-5 text-zinc-500 dark:text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-500 dark:peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-sky-600 dark:peer-focus:text-sky-400 peer-focus:text-sm">
-          Email Address
-        </label>
+        <label className="contact-label">Email Address</label>
       </div>
 
-      {/* Input Group: Message */}
-      <div className="relative mt-4">
+      <div className="relative z-[71]">
         <textarea
           name="message"
           value={formData.message}
@@ -118,23 +79,20 @@ const ContactForm: React.FC = () => {
           required
           rows={4}
           placeholder=" "
-          className="z-71 w-full bg-transparent border-b-2 border-zinc-400 dark:border-gray-500 text-zinc-900 dark:text-white py-2 px-1 focus:outline-none focus:border-sky-500 dark:focus:border-sky-400 peer resize-y min-h-[120px]"
+          className="contact-input peer resize-y min-h-[120px]"
         />
-        <label className="z-71 absolute left-1 -top-5 text-zinc-500 dark:text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-500 dark:peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-sky-600 dark:peer-focus:text-sky-400 peer-focus:text-sm">
-          Your Message
-        </label>
+        <label className="contact-label">Your Message</label>
       </div>
 
-      {/* Submit Button */}
       <button
         type="submit"
-        disabled={status === 'sending'} // Vô hiệu hóa nút khi đang gửi
-        className="z-71 mt-4 bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 self-center sm:self-start disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
+        disabled={status === 'sending'}
+        className="z-[71] mt-2 bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold py-3.5 px-8 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/25 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto self-center sm:self-start"
       >
-        {getButtonText()}
+        {buttonText}
       </button>
-      {status === 'success' && <p className="text-green-400 mt-2">Your message has been sent!</p>}
-      {status === 'error' && <p className="text-red-400 mt-2">Something went wrong. Please try again.</p>}
+      {status === 'success' && <p className="text-emerald-500 text-sm">Your message has been sent!</p>}
+      {status === 'error' && <p className="text-red-400 text-sm">Something went wrong. Please try again.</p>}
     </form>
   );
 };

@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
 @variant dark (&:where(.dark, .dark *));
 @import "./components/lightswind.css";
 @tailwind utilities;
+
 :root {
   line-height: 1.5;
   font-weight: 400;
@@ -14,18 +15,20 @@
 
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
   color-scheme: light;
   background-color: #fafafa;
 }
 
 html.dark {
   color-scheme: dark;
-  background-color: #18181b;
+  background-color: #09090b;
 }
 
 body {
   padding: 0;
   margin: 0;
+  font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
@@ -37,8 +40,8 @@ body {
 }
 
 html.dark body {
-  background-color: #18181b;
-  color: rgba(255, 255, 255, 0.87);
+  background-color: #09090b;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 #root {
@@ -47,13 +50,40 @@ html.dark body {
   max-width: 100%;
 }
 
-/* Swiper: mũi tên & pagination theo theme */
 .swiper {
-  --swiper-navigation-color: #18181b;
-  --swiper-pagination-color: #18181b;
+  --swiper-navigation-color: #8b5cf6;
+  --swiper-pagination-color: #8b5cf6;
 }
 
 html.dark .swiper {
-  --swiper-navigation-color: #e4e4e7;
-  --swiper-pagination-color: #e4e4e7;
+  --swiper-navigation-color: #c084fc;
+  --swiper-pagination-color: #c084fc;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #8b5cf6, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+html.dark .glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
 }

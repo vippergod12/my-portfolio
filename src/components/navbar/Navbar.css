@@ -1,177 +1,192 @@
-/* --- Thiết lập chung --- */
 .navbar {
-  display: flex;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  justify-content: space-between;
-  align-items: center;
-  background-color: transparent;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 0.75rem clamp(1rem, 4vw, 2rem);
   position: sticky;
   top: 0;
-  z-index: 9999 !important;
-  /* padding-inline: calc(var(--spacing) * 4); */
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-  /* border: none; */
+  z-index: 9999;
+  width: 100%;
+  padding: 1rem clamp(1rem, 3vw, 2rem);
+  transition: padding 0.3s ease;
 }
 
-/* --- Logo --- */
+.navbar.scrolled {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease;
+}
+
+html.dark .navbar-inner {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.navbar.scrolled .navbar-inner {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+html.dark .navbar.scrolled .navbar-inner {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
 .nav-logo {
-  color: #fff;
+  font-size: 1.75rem;
   text-decoration: none;
-  font-size: clamp(1.25rem, 4vw, 2rem);
-  font-weight: bold;
+  line-height: 1;
 }
 
-/* --- Menu Links --- */
 .nav-links {
   list-style: none;
   display: flex;
+  align-items: center;
   margin: 0;
   padding: 0;
-}
-
-.nav-links li {
-  margin-left: 0;
-}
-
-@media screen and (min-width: 769px) {
-  .nav-links li {
-    margin-left: clamp(0.75rem, 2vw, 2rem);
-  }
-
-  .nav-links li:first-child {
-    margin-left: 0;
-  }
+  gap: 0.125rem;
 }
 
 .nav-links a {
-  color: #e0e0e0;
+  color: #52525b;
   text-decoration: none;
-  transition: color 0.3s ease;
-  font-size: clamp(0.95rem, 2vw, 1.25rem);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 0.875rem;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
 }
 
-.nav-links a:hover {
-  color: #58A6FF; /* Màu nhấn khi hover */
+html.dark .nav-links a {
+  color: #a1a1aa;
 }
 
-/* --- Hamburger (tạm thời ẩn đi) --- */
+.nav-links a:hover,
+.nav-links a.nav-active {
+  color: #7c3aed;
+  background: rgba(139, 92, 246, 0.08);
+}
+
+html.dark .nav-links a:hover,
+html.dark .nav-links a.nav-active {
+  color: #c084fc;
+  background: rgba(192, 132, 252, 0.1);
+}
+
+.hire-me-btn {
+  background: linear-gradient(135deg, #8b5cf6, #a855f7, #ec4899) !important;
+  color: #fff !important;
+  padding: 0.5rem 1.25rem !important;
+  border-radius: 9999px !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3);
+}
+
+.hire-me-btn:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 24px rgba(139, 92, 246, 0.45) !important;
+  color: #fff !important;
+  background: linear-gradient(135deg, #7c3aed, #9333ea, #db2777) !important;
+}
+
 .hamburger {
   display: none;
   cursor: pointer;
   background: none;
   border: none;
-  padding: 0.25rem;
-  margin: 0;
-  line-height: 0;
+  padding: 0.5rem;
+  flex-direction: column;
+  gap: 5px;
 }
 
-/* --- CSS cho Hamburger Icon --- */
 .hamburger span {
   display: block;
-  width: 25px;
-  height: 3px;
-  margin: 5px 0;
-  background-color: #fff;
-}
-
-/* --- CSS cho nút Hire Me --- */
-.hire-me-btn {
-  /* Nền gradient từ xanh dương sang tím */
-  background-image: linear-gradient(to right, #4facfe 0%, #8e2de2 100%);
-  color: #fff !important;
-  padding: 0.5rem 1.5rem;
-  border-radius: 9999px;
-  font-weight: 600;
+  width: 20px;
+  height: 2px;
+  background-color: #3f3f46;
+  border-radius: 4px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px 0 rgba(142, 45, 226, 0.4); /* Đổi màu bóng sang tím */
+  transform-origin: center;
 }
 
-/* Hiệu ứng khi di chuột vào */
-.hire-me-btn:hover {
-  transform: scale(1.05); /* Phóng to nhẹ button */
-  color: #fff !important; /* Đảm bảo chữ vẫn màu trắng */
-  box-shadow: 0 6px 20px 0 rgba(79, 172, 254, 0.6); /* Tăng độ sáng của bóng */
+html.dark .hamburger span {
+  background-color: #d4d4d8;
 }
 
-/* --- Responsive cho màn hình nhỏ (Tablet/Mobile) --- */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 @media screen and (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .navbar-inner {
+    border-radius: 1rem;
+    position: relative;
+  }
+
   .nav-links {
     display: none;
     flex-direction: column;
-    width: 100%;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 0.5rem);
     left: 0;
     right: 0;
-    padding: 0.5rem 0 1rem;
-    background-color: rgba(44, 44, 44, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    text-align: center;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 1rem;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+    gap: 0.25rem;
   }
 
-  /* Khi có class 'active', menu sẽ hiện ra */
+  html.dark .nav-links {
+    background: rgba(17, 17, 19, 0.95);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  }
+
   .nav-links.active {
     display: flex;
   }
 
-  .nav-links li {
-    margin: 1rem 0; /* Khoảng cách dọc */
+  .nav-links a {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
   }
 
-  /* Hiện icon hamburger */
   .hamburger {
-    display: block;
+    display: flex;
   }
 
-  /* Tùy chỉnh nút "Hire Me" trên Mobile */
-  .nav-links.active .hire-me-btn {
-    display: block; /* Biến thẻ <a> thành dạng block để chiếm chiều rộng */
-    width: 90%; /* Chiếm 90% chiều rộng của menu */
-    margin: 1.5rem auto 1rem; /* Căn giữa và tạo khoảng cách với mục ở trên */
-    padding: 0.75rem 1rem; /* Tăng khoảng đệm để dễ nhấn hơn */
-    text-align: center; /* Căn giữa chữ */
-  }
-
-  /* Bỏ hiệu ứng phóng to trên mobile vì không có hover */
-  .nav-links.active .hire-me-btn:hover {
-    transform: none;
-  }
-}
-
-/* —— Giao diện sáng (html không có class .dark) —— */
-html:not(.dark) .navbar {
-  background-color: transparent;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
-}
-
-html:not(.dark) .nav-logo {
-  color: #18181b;
-}
-
-html:not(.dark) .nav-links a {
-  color: #3f3f46;
-}
-
-html:not(.dark) .nav-links a:hover {
-  color: #0284c7;
-}
-
-html:not(.dark) .hamburger span {
-  background-color: #18181b;
-}
-
-@media screen and (max-width: 768px) {
-  html:not(.dark) .nav-links {
-    background-color: rgba(228, 228, 231, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  .hire-me-btn {
+    margin-top: 0.25rem !important;
+    text-align: center !important;
+    display: block !important;
+    width: 100% !important;
   }
 }

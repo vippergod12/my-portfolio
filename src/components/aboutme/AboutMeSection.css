@@ -1,9 +1,5 @@
-.title-custom {
-    font-size: clamp(1.75rem, 5vw, 3rem);
-}
-
 @media screen and (max-width: 768px) {
-    .height-mobile {
-        min-height: 160px;
-    }
+  .height-mobile {
+    min-height: 140px;
+  }
 }

@@ -1,48 +1,65 @@
-import { useState } from 'react'; // 1. Import useState
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
+const navItems = [
+  { to: '/', label: 'Home' },
+  { to: '/products', label: 'Projects' },
+  { to: '/aboutme', label: 'About' },
+  { to: '/contact', label: 'Contact' },
+];
+
 const Navbar = () => {
-  // 2. Tạo state để theo dõi trạng thái menu (đóng hay mở)
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
-  // 3. Hàm để bật/tắt menu
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  useEffect(() => {
+    const handle = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handle, { passive: true });
+    return () => window.removeEventListener('scroll', handle);
+  }, []);
 
-  const closeMenu = () => setIsOpen(false);
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
 
   return (
-    <nav className="navbar" aria-label="Main navigation">
-      <Link to="/" className="nav-logo" onClick={closeMenu}>
-        MyPortfolio
-      </Link>
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} aria-label="Main navigation">
+      <div className="navbar-inner">
+        <Link to="/" className="nav-logo">
+          <span className="gradient-text font-display font-extrabold">T.</span>
+        </Link>
 
-      <ul
-        id="nav-menu"
-        className={isOpen ? 'nav-links active' : 'nav-links'}
-        aria-hidden={!isOpen}
-      >
-        <li><Link to="/" onClick={closeMenu}>Home</Link></li>
-        <li><Link to="/products" onClick={closeMenu}>Products</Link></li>
-        <li><Link to="/aboutme" onClick={closeMenu}>About me</Link></li>
-        <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
-        <li><Link to="/hire" className="hire-me-btn" onClick={closeMenu}>Hire me</Link></li>
-      </ul>
+        <ul id="nav-menu" className={`nav-links ${isOpen ? 'active' : ''}`}>
+          {navItems.map((item) => (
+            <li key={item.to}>
+              <Link
+                to={item.to}
+                className={location.pathname === item.to ? 'nav-active' : ''}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+          <li>
+            <Link to="/hire" className="hire-me-btn">Hire me</Link>
+          </li>
+        </ul>
 
-      <button
-        type="button"
-        className="hamburger"
-        onClick={toggleMenu}
-        aria-expanded={isOpen}
-        aria-controls="nav-menu"
-        aria-label={isOpen ? 'Close menu' : 'Open menu'}
-      >
-        <span />
-        <span />
-        <span />
-      </button>
+        <button
+          type="button"
+          className={`hamburger ${isOpen ? 'open' : ''}`}
+          onClick={() => setIsOpen((v) => !v)}
+          aria-expanded={isOpen}
+          aria-controls="nav-menu"
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </div>
     </nav>
   );
 };

@@ -8,7 +8,7 @@ const EDGE_PX = 3;
 const BLUR_PX = 6;
 const SWITCH_AT = 0.84;
 
-const DARK_BG = '#18181b';
+const DARK_BG = '#09090b';
 const LIGHT_BG = '#fafafa';
 
 function easeInOutQuad(x: number) {
@@ -154,7 +154,7 @@ const ThemeToggle = () => {
               onClick={() => choose('light')}
               className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors ${
                 theme === 'light'
-                  ? 'bg-sky-100 text-sky-900 dark:bg-sky-900/40 dark:text-sky-100'
+                  ? 'bg-violet-100 text-violet-900 dark:bg-violet-900/40 dark:text-violet-100'
                   : 'text-zinc-800 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-700/80'
               }`}
             >
@@ -166,7 +166,7 @@ const ThemeToggle = () => {
               onClick={() => choose('dark')}
               className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors ${
                 theme === 'dark'
-                  ? 'bg-sky-100 text-sky-900 dark:bg-sky-900/40 dark:text-sky-100'
+                  ? 'bg-violet-100 text-violet-900 dark:bg-violet-900/40 dark:text-violet-100'
                   : 'text-zinc-800 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-700/80'
               }`}
             >
@@ -184,7 +184,7 @@ const ThemeToggle = () => {
         aria-expanded={open}
         aria-haspopup="dialog"
         aria-label={open ? 'Đóng chọn giao diện' : 'Mở chọn giao diện'}
-        className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-sky-500 to-violet-600 text-white shadow-lg ring-2 ring-white/30 transition hover:scale-105 hover:brightness-110 focus:outline-none focus-visible:ring-4 focus-visible:ring-sky-400 dark:ring-zinc-900/50"
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 via-purple-500 to-pink-500 text-white shadow-lg ring-2 ring-white/30 transition hover:scale-105 hover:brightness-110 focus:outline-none focus-visible:ring-4 focus-visible:ring-violet-400 dark:ring-zinc-900/50"
       >
         <MdPalette className="h-6 w-6" aria-hidden />
       </button>

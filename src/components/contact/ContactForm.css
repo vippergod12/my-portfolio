@@ -1,7 +1,53 @@
-label{
-    font-size: 1.375rem;
+.contact-input {
+  width: 100%;
+  background: transparent;
+  border-bottom: 2px solid #d4d4d8;
+  color: #18181b;
+  padding: 0.625rem 0.25rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
 }
 
-.relative input{
-    font-size: 1.5rem;
+html.dark .contact-input {
+  border-bottom-color: #3f3f46;
+  color: #fafafa;
+}
+
+.contact-input:focus {
+  border-bottom-color: #8b5cf6;
+}
+
+html.dark .contact-input:focus {
+  border-bottom-color: #a78bfa;
+}
+
+.contact-label {
+  position: absolute;
+  left: 0.25rem;
+  top: -1.25rem;
+  color: #71717a;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.peer:placeholder-shown ~ .contact-label {
+  top: 0.625rem;
+  font-size: 1rem;
+  color: #a1a1aa;
+}
+
+html.dark .peer:placeholder-shown ~ .contact-label {
+  color: #71717a;
+}
+
+.peer:focus ~ .contact-label {
+  top: -1.25rem;
+  font-size: 0.8125rem;
+  color: #8b5cf6;
+}
+
+html.dark .peer:focus ~ .contact-label {
+  color: #a78bfa;
 }
